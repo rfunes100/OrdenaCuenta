@@ -36,8 +36,8 @@
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tbcuentas = new System.Windows.Forms.TabPage();
             this.tbmoneda = new System.Windows.Forms.TabPage();
-            this.imglistmenu = new System.Windows.Forms.ImageList(this.components);
             this.tbhismonedas = new System.Windows.Forms.TabPage();
+            this.imglistmenu = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -47,17 +47,16 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(4, 528);
+            this.statusStrip.Location = new System.Drawing.Point(3, 428);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(835, 26);
+            this.statusStrip.Size = new System.Drawing.Size(626, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
             // materialTabControl1
@@ -68,41 +67,50 @@
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl1.ImageList = this.imglistmenu;
-            this.materialTabControl1.Location = new System.Drawing.Point(4, 79);
-            this.materialTabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(835, 449);
+            this.materialTabControl1.Size = new System.Drawing.Size(626, 364);
             this.materialTabControl1.TabIndex = 4;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
             // tbcuentas
             // 
             this.tbcuentas.BackColor = System.Drawing.Color.White;
-            this.tbcuentas.ImageKey = "1455739708_Kitchen_Bold_Line_Color_Mix-04_icon-icons.com_53405.png";
+            this.tbcuentas.ImageKey = "home_house_3526.png";
             this.tbcuentas.Location = new System.Drawing.Point(4, 39);
-            this.tbcuentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbcuentas.Name = "tbcuentas";
-            this.tbcuentas.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbcuentas.Size = new System.Drawing.Size(827, 406);
+            this.tbcuentas.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbcuentas.Size = new System.Drawing.Size(618, 321);
             this.tbcuentas.TabIndex = 0;
             this.tbcuentas.Text = "Catalogo Contable";
             this.tbcuentas.ToolTipText = "Catalogo Contable";
             // 
             // tbmoneda
             // 
-            this.tbmoneda.ImageKey = "dollar-coin-money_icon-icons.com_56177.png";
             this.tbmoneda.Location = new System.Drawing.Point(4, 39);
-            this.tbmoneda.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbmoneda.Name = "tbmoneda";
-            this.tbmoneda.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbmoneda.Size = new System.Drawing.Size(827, 406);
+            this.tbmoneda.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbmoneda.Size = new System.Drawing.Size(618, 321);
             this.tbmoneda.TabIndex = 1;
             this.tbmoneda.Text = "Monedas";
             this.tbmoneda.ToolTipText = "Catalogo Monedas";
             this.tbmoneda.UseVisualStyleBackColor = true;
+            // 
+            // tbhismonedas
+            // 
+            this.tbhismonedas.ImageKey = "1489436636-coindollarcurrencymoney_81873.png";
+            this.tbhismonedas.Location = new System.Drawing.Point(4, 39);
+            this.tbhismonedas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbhismonedas.Name = "tbhismonedas";
+            this.tbhismonedas.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbhismonedas.Size = new System.Drawing.Size(618, 321);
+            this.tbhismonedas.TabIndex = 2;
+            this.tbhismonedas.Text = "HIstorico Monedas";
+            this.tbhismonedas.ToolTipText = "Historico de valores de moneda";
+            this.tbhismonedas.UseVisualStyleBackColor = true;
             // 
             // imglistmenu
             // 
@@ -115,30 +123,16 @@
             this.imglistmenu.Images.SetKeyName(4, "dollar-coin-money_icon-icons.com_56177.png");
             this.imglistmenu.Images.SetKeyName(5, "1489436636-coindollarcurrencymoney_81873.png");
             // 
-            // tbhismonedas
-            // 
-            this.tbhismonedas.ImageKey = "1489436636-coindollarcurrencymoney_81873.png";
-            this.tbhismonedas.Location = new System.Drawing.Point(4, 39);
-            this.tbhismonedas.Name = "tbhismonedas";
-            this.tbhismonedas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbhismonedas.Size = new System.Drawing.Size(827, 406);
-            this.tbhismonedas.TabIndex = 2;
-            this.tbhismonedas.Text = "HIstorico Monedas";
-            this.tbhismonedas.ToolTipText = "Historico de valores de moneda";
-            this.tbhismonedas.UseVisualStyleBackColor = true;
-            // 
             // Mainfrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 558);
+            this.ClientSize = new System.Drawing.Size(632, 453);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.statusStrip);
             this.DrawerTabControl = this.materialTabControl1;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Mainfrm";
-            this.Padding = new System.Windows.Forms.Padding(4, 79, 4, 4);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mainfrm";
             this.Load += new System.EventHandler(this.Mainfrm_Load);

@@ -279,7 +279,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 304);
+            this.ClientSize = new System.Drawing.Size(1000, 365);
             this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.btnagregar);
             this.Controls.Add(this.materialLabel6);

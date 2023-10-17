@@ -16,6 +16,26 @@ namespace OrdenaCuenta.Controller
         public CuentaController() { }
 
 
+        public DataTable Getcuentadt()
+        {
+            SqlConnection Con = new Conexion().GetConexion("BDConexion");
+            Con.Open();
+
+
+
+
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("showCCuenta", Con);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.Fill(dataTable);
+
+
+            Con.Close();
+            return dataTable;
+
+
+        }
+
         public MaterialListView GetCuenta()
         {
             SqlConnection Con = new Conexion().GetConexion("BDConexion");
@@ -82,10 +102,12 @@ namespace OrdenaCuenta.Controller
 
                     string sql = "execute cuentaAdd '" + Modelo.CuentaContable + "' , '"
                         + Modelo.Descripcion + "' , "
-                        +Modelo.ClaseCuentaId+ " , '"
+                        + Modelo.ClaseCuentaId + " , '"
                         + Modelo.CuentaTipo + "' , "
-                        + Modelo.MonedaId + " , "+
-                        Modelo.CueIdEmpresa + "  ";
+                        + Modelo.MonedaId + " , " +
+                        Modelo.CueIdEmpresa + " ";
+                        
+                        ;
 
 
                     using (SqlCommand cmd = new SqlCommand(sql, Con))
@@ -140,6 +162,36 @@ namespace OrdenaCuenta.Controller
                 return false;
             }
         }
+
+
+        public string GetcuentaClasificacion( int idcuenta )
+        {
+
+            string correlativo = null;
+
+            SqlConnection Con = new Conexion().GetConexion("BDConexion");
+            Con.Open();
+
+
+
+
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("cuentaClasificacion", Con);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            // Agregar el parámetro al comando
+            da.SelectCommand.Parameters.Add(new SqlParameter("@cuentaid", SqlDbType.Int));
+            da.SelectCommand.Parameters["@cuentaid"].Value = idcuenta;
+            da.Fill(dataTable);
+            correlativo = dataTable.Rows[0][0].ToString();
+
+
+
+            Con.Close();
+            return correlativo;
+
+
+        }
+
 
 
     }

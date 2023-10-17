@@ -73,6 +73,16 @@ namespace OrdenaCuenta.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1497559423_upload_file_85001 {
+            get {
+                object obj = ResourceManager.GetObject("1497559423-upload-file_85001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_insert_plus_icon_149546 {
             get {
                 object obj = ResourceManager.GetObject("add_insert_plus_icon_149546", resourceCulture);

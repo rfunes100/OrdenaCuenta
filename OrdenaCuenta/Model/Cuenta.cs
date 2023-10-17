@@ -18,8 +18,6 @@ namespace OrdenaCuenta.Model
         public int MonedaId { get; set; }
         public int CueIdEmpresa { get; set; }
         public bool Activo { get; set; }
-       
-
 
         public Cuenta() { }
 

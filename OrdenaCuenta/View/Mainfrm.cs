@@ -11,6 +11,10 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using OrdenaCuenta.Utilities;
 using OrdenaCuenta.View;
+using OrdenaCuenta.Controller;
+using OrdenaCuenta.Model;
+
+
 
 namespace OrdenaCuenta
 {
@@ -18,6 +22,9 @@ namespace OrdenaCuenta
     public partial class Mainfrm : MaterialForm 
     {
         private int childFormNumber = 0;
+
+        UsuarioController usucon = new UsuarioController();
+        UsuarioModel usumod = new UsuarioModel();
       
 
         public Mainfrm()
@@ -118,6 +125,52 @@ namespace OrdenaCuenta
 
         private void Mainfrm_Load(object sender, EventArgs e)
         {
+            usumod.usuario = "rfune3";
+
+            DataTable dataTable =  usucon.getusuariomenu(usumod);
+
+            foreach (DataRow menuItem in dataTable.Rows)
+            {
+                string nombreMenu = menuItem["Nombre"].ToString(); // Reemplaza "NombreMenu" con el nombre real de la columna.
+                string icono  = menuItem["icono"].ToString(); // Reemplaza "NombreMenu" con el nombre real de la columna.
+
+
+
+                TabPage topLevelMenuItem = new TabPage(nombreMenu);
+               topLevelMenuItem.ImageKey = icono;
+              materialTabControl1.TabPages.Add(topLevelMenuItem);
+
+                  topLevelMenuItem.Name = "TabPage_" + nombreMenu;
+
+                //     materialTabControl1.TabPages.Add(topLevelMenuItem);
+
+                //// Agrega un manejador de eventos al evento Click del MaterialTabPage.
+                topLevelMenuItem.Click += (clickedTabPage, eventArgs) =>
+                {
+                    // Aquí abres el formulario que deseas cuando se hace clic en el MaterialTabPage.
+                    string tabPageName = topLevelMenuItem.Name;
+
+                    // Lógica para abrir el formulario en función del tabPageName.
+                    if (tabPageName == "TabPage_Inicio")
+                    {
+                        // Abre el formulario correspondiente al Nombre1.
+                        // Por ejemplo:
+                        Partidafrm form1 = new Partidafrm();
+                        form1.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Nombre2")
+                    {
+                        // Abre el formulario correspondiente al Nombre2.
+                        // Por ejemplo:
+                        Partidafrm form1 = new Partidafrm();
+                        form1.ShowDialog();
+
+                    }
+                    // Agrega más casos según tus necesidades.
+
+                };
+
+            }
 
         }
 

@@ -1,4 +1,7 @@
 ﻿using OrdenaCuenta.View;
+using OrdenaCuenta.View.Cliente;
+using OrdenaCuenta.View.Rolfrm;
+using OrdenaCuenta.View.Usuariofrm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,10 @@ namespace OrdenaCuenta
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
              Application.Run(new Mainfrm());
-            //Application.Run(new CuentaAddfrm());
+            // Application.Run(new ClienteAdd());
+          //  Application.Run(new UsuarioShow());
+
+            // Application.Run(new Partidafrm());
         }
     }
 }

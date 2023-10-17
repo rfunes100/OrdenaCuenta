@@ -70,8 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ClasificacionCuentaController.cs" />
+    <Compile Include="Controller\ClienteController.cs" />
+    <Compile Include="Controller\CorrelativoController.cs" />
     <Compile Include="Controller\CuentaController.cs" />
+    <Compile Include="Controller\LibroController.cs" />
+    <Compile Include="Controller\PartidaController.cs" />
+    <Compile Include="Controller\RolController.cs" />
     <Compile Include="Controller\TipoMonedaController.cs" />
+    <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,9 +91,28 @@
       <DependentUpon>Frmenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ClasificacionCuenta.cs" />
+    <Compile Include="Model\ClienteModel.cs" />
     <Compile Include="Model\Conexion.cs" />
+    <Compile Include="Model\Correlativo.cs" />
     <Compile Include="Model\Cuenta.cs" />
+    <Compile Include="Model\Partida.cs" />
+    <Compile Include="Model\RolModel.cs" />
+    <Compile Include="Model\UsuarioModel.cs" />
     <Compile Include="Utilities\DocumentacionRequerida.cs" />
+    <Compile Include="Utilities\Filtros.cs" />
+    <Compile Include="Utilities\Seguridad.cs" />
+    <Compile Include="View\Cliente\ClienteAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cliente\ClienteAdd.Designer.cs">
+      <DependentUpon>ClienteAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cliente\ClienteShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cliente\ClienteShow.Designer.cs">
+      <DependentUpon>ClienteShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\CuentaAddfrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,8 +140,44 @@
     <Compile Include="View\MesanjeSioNo.Designer.cs">
       <DependentUpon>MesanjeSioNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Partidafrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Partidafrm.Designer.cs">
+      <DependentUpon>Partidafrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Rolfrm\RolAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Rolfrm\RolAdd.Designer.cs">
+      <DependentUpon>RolAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Rolfrm\Rolshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Rolfrm\Rolshow.Designer.cs">
+      <DependentUpon>Rolshow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioAdd.Designer.cs">
+      <DependentUpon>UsuarioAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuariofrm\UsuarioShow.Designer.cs">
+      <DependentUpon>UsuarioShow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cliente\ClienteAdd.resx">
+      <DependentUpon>ClienteAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cliente\ClienteShow.resx">
+      <DependentUpon>ClienteShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CuentaAddfrm.resx">
       <DependentUpon>CuentaAddfrm.cs</DependentUpon>
@@ -139,6 +200,21 @@
     </Compile>
     <EmbeddedResource Include="View\MesanjeSioNo.resx">
       <DependentUpon>MesanjeSioNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Partidafrm.resx">
+      <DependentUpon>Partidafrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Rolfrm\RolAdd.resx">
+      <DependentUpon>RolAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Rolfrm\Rolshow.resx">
+      <DependentUpon>Rolshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuariofrm\UsuarioAdd.resx">
+      <DependentUpon>UsuarioAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuariofrm\UsuarioShow.resx">
+      <DependentUpon>UsuarioShow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -172,5 +248,9 @@
   <ItemGroup>
     <None Include="Resources\pencil-striped-symbol-for-interface-edit-buttons_icon-icons.com_56782.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1497559423-upload-file_85001.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

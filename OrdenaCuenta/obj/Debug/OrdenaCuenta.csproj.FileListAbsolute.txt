@@ -22,3 +22,10 @@ C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security
 C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\bin\Debug\System.Security.Principal.Windows.xml
 C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.MesanjeSioNo.resources
 C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.CuentaAddfrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Partidafrm.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.ClienteAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Cliente.ClienteShow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Rolfrm.RolAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Rolfrm.Rolshow.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.UsuarioAdd.resources
+C:\Users\rfune3\source\repos\OrdenaCuenta\OrdenaCuenta\obj\Debug\OrdenaCuenta.View.Usuariofrm.UsuarioShow.resources
