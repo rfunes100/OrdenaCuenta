@@ -33,6 +33,10 @@ namespace OrdenaCuenta.View.Cliente
         string Abonopar = "";
         string monedapar = "";
         string dirrecion = "";
+        string rtncia = "";
+        string nombrecia = "";
+        string subcuentas = "";
+
 
 
 
@@ -112,6 +116,10 @@ namespace OrdenaCuenta.View.Cliente
             this.Abonopar = lsclientes.SelectedItems[0].SubItems[8].Text;
             this.monedapar = lsclientes.SelectedItems[0].SubItems[10].Text;
             this.dirrecion = lsclientes.SelectedItems[0].SubItems[11].Text;
+            this.subcuentas = lsclientes.SelectedItems[0].SubItems[12].Text;
+            this.rtncia = lsclientes.SelectedItems[0].SubItems[14].Text;
+            this.nombrecia = lsclientes.SelectedItems[0].SubItems[15].Text;
+
 
         }
 
@@ -131,7 +139,10 @@ namespace OrdenaCuenta.View.Cliente
                 Telefono = this.Telefonopar,
                 Abono = Convert.ToDecimal( this.Abonopar),
                 CliTipMonid = Convert.ToInt32( this.monedapar),
-                Direccion = this.dirrecion
+                Direccion = this.dirrecion,
+                subcuenta = this.subcuentas,
+                RTN = this.rtncia,
+                NombreCia = this.nombrecia
             };
 
             ClienteAdd frm = new ClienteAdd("editar", parametros);
@@ -144,6 +155,7 @@ namespace OrdenaCuenta.View.Cliente
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
+
             if (id == "0")
             {
                 MaterialMessageBox.Show("Debe seleccionar un registro");
@@ -171,6 +183,7 @@ namespace OrdenaCuenta.View.Cliente
                 MaterialMessageBox.Show("No se borro el registro");
             }
 
+
         }
 
         private void btagregar_Click(object sender, EventArgs e)
@@ -191,6 +204,12 @@ namespace OrdenaCuenta.View.Cliente
 
             ClienteAdd frm = new ClienteAdd("agregar", parametros);
             frm.ShowDialog();
+            this.cargar();
+        }
+
+        private void btneditar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

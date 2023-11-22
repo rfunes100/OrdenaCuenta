@@ -80,7 +80,7 @@ namespace OrdenaCuenta.Controller
 
                    
                     item.SubItems.Add(fila["descripcion"].ToString());
-                    item.SubItems.Add(fila["roldEmpresa"].ToString());
+                  //  item.SubItems.Add(fila["roldEmpresa"].ToString());
                   
 
                     lista.Items.Add(item);

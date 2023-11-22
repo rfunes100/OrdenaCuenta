@@ -8,7 +8,7 @@ using System.Data;
 
 namespace OrdenaCuenta.Model
 {
-     class UsuarioModel
+    public   class UsuarioModel
     {
         public int id { get; set; }
 
@@ -39,6 +39,7 @@ namespace OrdenaCuenta.Model
         public string idrol { get; set; }
 
         public int intentos { get; set; }
+        public int usuidempresa { get; set; }
 
 
         public static DataTable getcliente { get; set; }

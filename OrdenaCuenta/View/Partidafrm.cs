@@ -24,6 +24,16 @@ namespace OrdenaCuenta.View
         CorrelativoController correlativocon = new CorrelativoController();
         PartidaController partidacon = new PartidaController();
         CorrelativoController correlacon = new CorrelativoController();
+        PeriodoContableController periodocontablecon = new PeriodoContableController();
+        PeriodoContableModel periodocontablemod = new PeriodoContableModel();
+        periodoinformeController periodoinfocon = new periodoinformeController();
+        periodoinformeModel periodoinfomod = new periodoinformeModel();
+        TipoMonedaController monedaController = new TipoMonedaController();
+        TipoMonedaModel monedaModel = new TipoMonedaModel();    
+        HistoricoMonedaController histmonedacon = new HistoricoMonedaController();
+        HistoricoMonedaModel HistoricoMonedaModel = new HistoricoMonedaModel();
+
+
 
         Partida partidamod = new Partida();
         Correlativo correlamod = new Correlativo();
@@ -34,6 +44,7 @@ namespace OrdenaCuenta.View
         string clasificacioncuenta = "";
         int debe = 0;
         int haber = 0;
+        string usuario = Properties.Settings.Default.Usuario;
 
 
 
@@ -109,6 +120,16 @@ namespace OrdenaCuenta.View
         private void btnagregar_Click(object sender, EventArgs e)
         {
 
+            int periodogenerado = 0;
+            int periodoinforme = 0;
+            string TipoMonedalocal = "";
+            decimal tasacambio = 1;
+            string montoconvertido = "";
+
+
+            correlativo = correlativocon.GetCorrelativo();
+
+
             if (txtfecha.Text == "" || txtreferencia.Text == "" || txtmonto.Text == "0" || txtmonto.Text == "")
             {
                 MaterialMessageBox.Show("Debe de llenar los campos obligatorios");
@@ -116,7 +137,40 @@ namespace OrdenaCuenta.View
             }
 
 
-            ListViewItem item = new ListViewItem(correlativo);
+            periodocontablemod.FechaIni = Convert.ToDateTime(txtfecha.Text);
+
+            periodogenerado =  periodocontablecon.periodonogenerado(periodocontablemod);
+
+
+            if(periodogenerado == 0)
+            {
+                MaterialMessageBox.Show("Se debe de generar un periodo contable");
+                return;
+            }
+            periodoinfomod.fechainforme = Convert.ToDateTime(txtfecha.Text);
+
+            periodoinforme = periodoinfocon.periodoinformeestperiodo(periodoinfomod);
+
+            if (periodoinforme > 0)
+            {
+                MaterialMessageBox.Show("No se puede ingresar movimientos por cierres contables");
+                return;
+            }
+
+            monedaModel.Id = Convert.ToInt32( cmbcuenta.SelectedValue.ToString());
+            TipoMonedalocal = monedaController.TipoMonedalocal(monedaModel);
+
+            if(TipoMonedalocal != "HNL")
+            {
+                HistoricoMonedaModel.Fecha = Convert.ToDateTime(txtfecha.Text);
+                HistoricoMonedaModel.Id = Convert.ToInt32(cmbcuenta.SelectedValue.ToString());
+                HistoricoMonedaModel.estado = "paga";
+
+                tasacambio = histmonedacon.HistoricoMonedaconversion(HistoricoMonedaModel);
+            }
+            montoconvertido = Convert.ToString( tasacambio * Convert.ToDecimal(txtmonto.Text) );
+
+           ListViewItem item = new ListViewItem(correlativo);
 
           //   this.clasificacioncuenta = cuentacon.GetcuentaClasificacion( Convert.ToInt32(cmbcuenta.SelectedValue) );
 
@@ -127,15 +181,15 @@ namespace OrdenaCuenta.View
 
             if (this.clasificacioncuenta == "Debito")
             {
-                item.SubItems.Add(txtmonto.Text);
+                item.SubItems.Add(montoconvertido /*txtmonto.Text */);
                 item.SubItems.Add("0");
-                debe = debe + Convert.ToInt32(txtmonto.Text);
+                debe = debe + (int)Math.Round( Convert.ToDecimal( montoconvertido) ) ;
             }
             else
             {
                 item.SubItems.Add("0");
                 item.SubItems.Add(txtmonto.Text);
-                haber = haber + Convert.ToInt32(txtmonto.Text);
+                haber = haber + (int)Math.Round( Convert.ToDecimal(montoconvertido));
 
             }
             item.SubItems.Add(cmbcuenta.SelectedValue.ToString() );
@@ -147,12 +201,12 @@ namespace OrdenaCuenta.View
                 if (this.clasificacioncuenta == "Debito")
                 {
            
-                    debe = debe - Convert.ToInt32(txtmonto.Text);
+                    debe = debe - Convert.ToInt32(montoconvertido);
                 }
                 else
                 {
               
-                    haber = haber - Convert.ToInt32(txtmonto.Text);
+                    haber = haber - Convert.ToInt32(montoconvertido);
 
                 }
                 
@@ -205,19 +259,33 @@ namespace OrdenaCuenta.View
                 partidamod.Fecha = Convert.ToDateTime(item.SubItems[1].Text); // Suponiendo que la segunda columna contiene otro dato
                 partidamod.CuentaPar = Convert.ToInt32(item.SubItems[6].Text);
                 partidamod.Parcial = 0;
-                partidamod.Debe = Convert.ToInt32(item.SubItems[4].Text);
-                partidamod.Haber = Convert.ToInt32(item.SubItems[5].Text);
+                partidamod.Debe = (int)Math.Round(Convert.ToDouble(item.SubItems[4].Text));
+                partidamod.Haber = (int)Math.Round(Convert.ToDouble(item.SubItems[5].Text) );
                 partidamod.Referencia = txtreferencia.Text;
                 partidamod.ParIdEmpresa = 3;
                 partidamod.ParIdLibro = Convert.ToInt32(item.SubItems[7].Text);
-                partidamod.UsuarioCreacion = "yanoe01";
+                partidamod.UsuarioCreacion = usuario;
                 partidamod.TipoTransaccion = "Partidas";
+                partidamod.estado = "partida";
+                partidamod.subcueid = 0;
 
                 partidacon.Crear(partidamod);
-                lspartidas.Clear();
+              //  lspartidas.Clear();
 
                 lspartidas.Items.Clear();
-               
+
+                //lspartidas.Columns.Add("Asiento", 90); // Nombre de la columna y ancho en píxeles.
+
+                //lspartidas.Columns.Add("Fecha", 110); // Agrega más columnas según tus necesidades.
+                //lspartidas.Columns.Add("Cuena", 200); // Nombre de la columna y ancho en píxeles.
+
+                //lspartidas.Columns.Add("Libro", 100); // Nombre de la columna y ancho en píxeles.
+                //lspartidas.Columns.Add("Debe", 130); // Nombre de la columna y ancho en píxeles.
+                //lspartidas.Columns.Add("Haber", 130); // Nombre de la columna y ancho en píxeles.
+                //lspartidas.Columns.Add("idlibro", 80); // Nombre de la columna y ancho en píxeles.
+                //lspartidas.Columns.Add("idcuenta", 90); // Nombre de la columna y ancho en píxeles.
+
+
 
             }
 
@@ -227,7 +295,8 @@ namespace OrdenaCuenta.View
 
             txtreferencia.Text = "";
             txtfecha.Text = "";
-
+            this.haber = 0;
+            this.debe = 0;
 
             MaterialMessageBox.Show("Se agrego exitosamente");
 
@@ -287,6 +356,14 @@ namespace OrdenaCuenta.View
                 swinaturaleza.Text = "Credito";
                 this.clasificacioncuenta = "Credito";
             }
+        }
+
+        private void btncerrar_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Opcmenu = 1;
+
+            this.Dispose();
+            this.Close();
         }
     }
 }

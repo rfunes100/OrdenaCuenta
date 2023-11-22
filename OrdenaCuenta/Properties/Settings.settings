@@ -5,5 +5,20 @@
     <Setting Name="RespuestaMensaje" Type="System.String" Scope="User">
       <Value Profile="(Default)">vacio</Value>
     </Setting>
+    <Setting Name="Opcmenu" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Usercajero" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Usuario" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rfune3</Value>
+    </Setting>
+    <Setting Name="idsubcuenta" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="subcuentacod" Type="System.String" Scope="User">
+      <Value Profile="(Default)">vacio</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

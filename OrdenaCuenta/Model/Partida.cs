@@ -26,6 +26,9 @@ namespace OrdenaCuenta.Model
         public int ParIdLibro { get; set; }
         public string UsuarioCreacion { get; set; }
         public string TipoTransaccion { get; set; }
+        public string estado { get; set; }
+        public int subcueid { get; set; }
+
 
     }
 }

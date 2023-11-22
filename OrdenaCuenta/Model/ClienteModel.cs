@@ -24,6 +24,13 @@ namespace OrdenaCuenta.Model
         public string segundoApellido { get; set; }
         public int CliTipMonid { get; set; }
         public string FechaIngresostr { get; set; }
+        public int subcueidcli {  get; set; }
+        public string NombreCia { get; set; }
+        public string RTN { get; set; }
+        public string usuariocreacion { get; set; }
+        public string subcuenta { get; set; }
+
+
 
 
 

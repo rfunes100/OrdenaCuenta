@@ -29,32 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rolshow));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtnombre = new MaterialSkin.Controls.MaterialTextBox();
             this.btagregar = new MaterialSkin.Controls.MaterialButton();
             this.btneliminar = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.lsrol = new MaterialSkin.Controls.MaterialListView();
             this.btneditar = new MaterialSkin.Controls.MaterialButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(464, 111);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 30;
-            this.pictureBox1.TabStop = false;
             // 
             // txtnombre
             // 
             this.txtnombre.AnimateReadOnly = false;
             this.txtnombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtnombre.Depth = 0;
-            this.txtnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtnombre.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtnombre.LeadingIcon = null;
             this.txtnombre.Location = new System.Drawing.Point(266, 99);
             this.txtnombre.MaxLength = 50;
@@ -64,7 +52,7 @@
             this.txtnombre.Size = new System.Drawing.Size(241, 50);
             this.txtnombre.TabIndex = 28;
             this.txtnombre.Text = "";
-            this.txtnombre.TrailingIcon = null;
+            this.txtnombre.TrailingIcon = ((System.Drawing.Image)(resources.GetObject("txtnombre.TrailingIcon")));
             this.txtnombre.TextChanged += new System.EventHandler(this.txtnombre_TextChanged);
             // 
             // btagregar
@@ -164,7 +152,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 473);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtnombre);
             this.Controls.Add(this.btagregar);
             this.Controls.Add(this.btneditar);
@@ -175,15 +162,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento de roles";
             this.Load += new System.EventHandler(this.Rolshow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialTextBox txtnombre;
         private MaterialSkin.Controls.MaterialButton btagregar;
         private MaterialSkin.Controls.MaterialButton btneliminar;

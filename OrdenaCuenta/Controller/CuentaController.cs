@@ -193,6 +193,65 @@ namespace OrdenaCuenta.Controller
         }
 
 
+        public MaterialListView GetCuentaBuscador()
+        {
+            SqlConnection Con = new Conexion().GetConexion("BDConexion");
+            Con.Open();
+
+            MaterialListView lista = new MaterialListView();
+
+            try
+            {
+                // Tu código aquí
+
+                DataTable dataTable = new DataTable();
+
+                SqlCommand cmd = new SqlCommand("showCCuenta", Con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                //SqlDataAdapter da = new SqlDataAdapter("showClasificacionCuenta", Con);
+                // da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dataTable);
+
+
+                foreach (DataRow fila in dataTable.Rows)
+                {
+
+
+                    ListViewItem item = new ListViewItem(fila["Id"].ToString());
+
+                    item.SubItems.Add(fila["CuentaContable"].ToString());
+                    item.SubItems.Add(fila["Descripcion"].ToString());
+                    //item.SubItems.Add(fila["TipoCuenta"].ToString());
+                    //item.SubItems.Add(fila["CuentaTipo"].ToString());
+                    //item.SubItems.Add(fila["Moneda"].ToString());
+                    // item.SubItems.Add(fila["Activo"].ToString());
+
+                    lista.Items.Add(item);
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+
+
+            Con.Close();
+            return lista;
+
+
+        }
+
+
+
+
 
     }
 }

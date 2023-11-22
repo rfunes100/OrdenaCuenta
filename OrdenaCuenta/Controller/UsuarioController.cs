@@ -17,6 +17,50 @@ namespace OrdenaCuenta.Controller
 
         public UsuarioController() { }
 
+
+        public bool Editar(UsuarioModel Modelo)
+        {
+            try
+            {
+                using (SqlConnection Con = new Conexion().GetConexion("BDConexion"))
+                {
+                    Con.Open();
+
+                    string sql = "execute usuarioactualiza " + Modelo.id + " , '" +
+                        Modelo.primernombre + "' , '" +
+                        Modelo.segundonombre + "' , '" +
+                        Modelo.primerapellido + "' , '" +
+                        Modelo.segundoapellido + "' , '" +
+                        Modelo.fechaingreso + "' , '" +
+                        Modelo.dni + "' , '" +
+                        Modelo.preguntaSeguridad + "' , '" +
+                        Modelo.telefono + "' , '" +
+                        Modelo.sexo + "' , " +
+                        Modelo.intentos + "  " 
+                  
+                        ;
+
+
+                    using (SqlCommand cmd = new SqlCommand(sql, Con))
+                    {
+                        cmd.CommandTimeout = 600;
+                        cmd.ExecuteNonQuery();
+                    }
+                    MaterialMessageBox.Show("Se modifico exitosamente");
+
+                    Con.Close();
+                }
+
+                return true;
+            }
+            catch (Exception errores)
+            {
+                MessageBox.Show(errores.Message, "Informacion del sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                return false;
+            }
+        }
+
+
         public bool Crear(UsuarioModel Modelo)
         {
             try
@@ -25,7 +69,7 @@ namespace OrdenaCuenta.Controller
                 {
                     Con.Open();
 
-                    string sql = "execute addcliente '" + Modelo.primernombre + "' , ' "+
+                    string sql = "execute addcliente '" + Modelo.primernombre + "' , '"+
                         Modelo.segundonombre +"' , '"+
                         Modelo.primerapellido + "' , '" +
                         Modelo.segundoapellido + "' , '" +
@@ -36,7 +80,9 @@ namespace OrdenaCuenta.Controller
                         Modelo.RespuestaSeguridad + "' , '" +
                         Modelo.telefono + "' , '" +
                         Modelo.sexo + "' , '" +
-                        Modelo.idrol + "' ";
+                        Modelo.idrol + "' , "+
+                        Modelo.usuidempresa + " "
+                        ;
 
 
                     using (SqlCommand cmd = new SqlCommand(sql, Con))
@@ -101,7 +147,10 @@ namespace OrdenaCuenta.Controller
                     item.SubItems.Add(fechaFormateada);
                     item.SubItems.Add(fila["telefono"].ToString());
                     item.SubItems.Add(fila["rol"].ToString());
-               
+                    item.SubItems.Add(fila["preguntaSeguridad"].ToString());
+                    item.SubItems.Add(fila["sexo"].ToString());
+
+
 
 
                     // item.SubItems.Add(fila["Activo"].ToString());
@@ -241,6 +290,7 @@ namespace OrdenaCuenta.Controller
             }
         }
 
+
         public string getrol(UsuarioModel Modelo)
         {
             string valor;
@@ -324,6 +374,7 @@ namespace OrdenaCuenta.Controller
 
                         // Agrega parámetros si es necesario.
                         da.SelectCommand.Parameters.Add(new SqlParameter("@usuario", SqlDbType.VarChar)).Value = Modelo.usuario;
+                        da.SelectCommand.Parameters.Add(new SqlParameter("@nivel", SqlDbType.VarChar)).Value = Modelo.dni;
 
                         // Crea un DataTable para almacenar los resultados.
 
@@ -351,6 +402,63 @@ namespace OrdenaCuenta.Controller
                 MessageBox.Show(errores.Message, "Informacion del sistema", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 return dataTable;
             }
+        }
+
+
+        public MaterialListView GetbuscadorUsuario()
+        {
+            SqlConnection Con = new Conexion().GetConexion("BDConexion");
+            Con.Open();
+
+            MaterialListView lista = new MaterialListView();
+
+            try
+            {
+                // Tu código aquí
+
+                DataTable dataTable = new DataTable();
+
+                SqlCommand cmd = new SqlCommand("showcliente", Con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                //SqlDataAdapter da = new SqlDataAdapter("showClasificacionCuenta", Con);
+                // da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(dataTable);
+
+
+                foreach (DataRow fila in dataTable.Rows)
+                {
+
+
+                    ListViewItem item = new ListViewItem(fila["id"].ToString());
+                    item.SubItems.Add(fila["usuario"].ToString());
+                    item.SubItems.Add(fila["nombre"].ToString());            
+                   
+                
+
+
+                    // item.SubItems.Add(fila["Activo"].ToString());
+
+                    lista.Items.Add(item);
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+
+
+            Con.Close();
+            return lista;
+
+
         }
 
 

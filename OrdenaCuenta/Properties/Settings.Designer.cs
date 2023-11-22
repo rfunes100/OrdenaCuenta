@@ -34,5 +34,65 @@ namespace OrdenaCuenta.Properties {
                 this["RespuestaMensaje"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Opcmenu {
+            get {
+                return ((int)(this["Opcmenu"]));
+            }
+            set {
+                this["Opcmenu"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string Usercajero {
+            get {
+                return ((string)(this["Usercajero"]));
+            }
+            set {
+                this["Usercajero"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("rfune3")]
+        public string Usuario {
+            get {
+                return ((string)(this["Usuario"]));
+            }
+            set {
+                this["Usuario"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int idsubcuenta {
+            get {
+                return ((int)(this["idsubcuenta"]));
+            }
+            set {
+                this["idsubcuenta"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("vacio")]
+        public string subcuentacod {
+            get {
+                return ((string)(this["subcuentacod"]));
+            }
+            set {
+                this["subcuentacod"] = value;
+            }
+        }
     }
 }

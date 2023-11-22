@@ -13,8 +13,7 @@ using OrdenaCuenta.Utilities;
 using OrdenaCuenta.View;
 using OrdenaCuenta.Controller;
 using OrdenaCuenta.Model;
-
-
+using OrdenaCuenta.View.Menus;
 
 namespace OrdenaCuenta
 {
@@ -25,25 +24,26 @@ namespace OrdenaCuenta
 
         UsuarioController usucon = new UsuarioController();
         UsuarioModel usumod = new UsuarioModel();
-      
+        string usuario = Properties.Settings.Default.Usuario;
 
-        public Mainfrm()
+
+
+        public Mainfrm( string rolusuario)
         {
             InitializeComponent();
             //  this.IsMdiContainer = true;
 
             // se llama la clase material para darle estilo al formulario la cual se encuentra en la carpeta utilidades
-            MaterialFrmEstilo estilo = new MaterialFrmEstilo();
-            estilo.frmMaterial(this);
+           
          
         }
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Mainfrm childForm = new Mainfrm();
-            childForm.MdiParent = this;
-            childForm.Text = "Window " + childFormNumber++;
-            childForm.Show();
+            //Mainfrm childForm = new Mainfrm();
+            //childForm.MdiParent = this;
+            //childForm.Text = "Window " + childFormNumber++;
+            //childForm.Show();
         }
 
         private void OpenFile(object sender, EventArgs e)
@@ -125,15 +125,124 @@ namespace OrdenaCuenta
 
         private void Mainfrm_Load(object sender, EventArgs e)
         {
+
+            MaterialFrmEstilo estilo = new MaterialFrmEstilo();
+            estilo.frmMaterial(this);
+
+
+            usumod.usuario = usuario; // "rfune3";
+            usumod.dni = "Padre";
+            DataTable dataTable = usucon.getusuariomenu(usumod);
+
+
+            int menuseleccionado = 0; // Declarar e inicializar fuera del evento
+            int cuenta = 0;
+
+            // Registra el manejador de eventos una vez, fuera del bucle
+            materialTabControl1.SelectedIndexChanged += (s, args) =>
+            {
+              //  int menuseleccionado = Properties.Settings.Default.Opcmenu;
+
+                // Obtiene la pestaña seleccionada
+                if (materialTabControl1.SelectedTab != null)
+                {
+                    string tabPageName = materialTabControl1.SelectedTab.Name.Replace(" ", "");
+
+                    // Lógica para abrir el formulario en función del tabPageName
+                    if (tabPageName == "TabPage_Inicio")
+                    {
+                        // Abre el formulario correspondiente al Nombre1
+                        Partidafrm form1 = new Partidafrm();
+                        form1.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Contabilidad")
+                    {
+                        // Abre el formulario correspondiente al Nombre2
+                        MenuContabilidadcs form2 = new MenuContabilidadcs();
+                        form2.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Mantenimientos")
+                    {
+                        // Abre el formulario correspondiente al Nombre2.
+                        // Por ejemplo:
+                        MenuMantenimientos form2 = new MenuMantenimientos();
+                        form2.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Clientes")
+                    {
+                        // Abre el formulario correspondiente al Nombre2.
+                        // Por ejemplo:
+                        MenuCliente form2 = new MenuCliente();
+                        form2.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Proveedores" )
+                    {
+                        // Abre el formulario correspondiente al Nombre2.
+                        // Por ejemplo:
+                        MenuProveedor form2 = new MenuProveedor();
+                        form2.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Seguridad" )
+                    {
+                        // Abre el formulario correspondiente al Nombre2.
+                        // Por ejemplo:
+                        MenuSeguridad form2 = new MenuSeguridad();
+                        form2.ShowDialog();
+                    }
+                    else if (tabPageName == "TabPage_Reportes" )
+                    {
+                        // Abre el formulario correspondiente al Nombre2.
+                        // Por ejemplo:
+                       MenusReportes form2 = new MenusReportes("Reportes");
+                        form2.ShowDialog();
+                    }
+                    menuseleccionado++;
+                    // Agrega más casos según tus necesidades
+                }
+
+               // menuseleccionado = Properties.Settings.Default.Opcmenu = menuseleccionado + 1;
+
+                //if (menuseleccionado > 1)
+                //{
+                //    Properties.Settings.Default.Opcmenu = 0;
+                //    menuseleccionado = Properties.Settings.Default.Opcmenu;
+                //}
+            };
+            
+
+            foreach (DataRow menuItem in dataTable.Rows)
+            {
+                string nombreMenu = menuItem["Nombre"].ToString();
+                string icono = menuItem["icono"].ToString();
+
+                TabPage topLevelMenuItem = new TabPage(nombreMenu);
+                topLevelMenuItem.ImageKey = icono;
+                materialTabControl1.TabPages.Add(topLevelMenuItem);
+                topLevelMenuItem.Name = "TabPage_" + nombreMenu;
+                cuenta++;
+               // return;
+
+                if (dataTable.Rows.Count == cuenta)
+                {
+                    return;
+                }
+                
+            }
+          
+           
+
+
+            /*
             usumod.usuario = "rfune3";
 
             DataTable dataTable =  usucon.getusuariomenu(usumod);
+            
 
             foreach (DataRow menuItem in dataTable.Rows)
             {
                 string nombreMenu = menuItem["Nombre"].ToString(); // Reemplaza "NombreMenu" con el nombre real de la columna.
                 string icono  = menuItem["icono"].ToString(); // Reemplaza "NombreMenu" con el nombre real de la columna.
-
+               
 
 
                 TabPage topLevelMenuItem = new TabPage(nombreMenu);
@@ -141,36 +250,98 @@ namespace OrdenaCuenta
               materialTabControl1.TabPages.Add(topLevelMenuItem);
 
                   topLevelMenuItem.Name = "TabPage_" + nombreMenu;
-
-                //     materialTabControl1.TabPages.Add(topLevelMenuItem);
-
-                //// Agrega un manejador de eventos al evento Click del MaterialTabPage.
-                topLevelMenuItem.Click += (clickedTabPage, eventArgs) =>
+                materialTabControl1.SelectedIndexChanged += (s, args) =>
                 {
-                    // Aquí abres el formulario que deseas cuando se hace clic en el MaterialTabPage.
-                    string tabPageName = topLevelMenuItem.Name;
 
-                    // Lógica para abrir el formulario en función del tabPageName.
-                    if (tabPageName == "TabPage_Inicio")
+                    int menuseleccionado = Properties.Settings.Default.Opcmenu;
+
+
+                    // Obtiene la pestaña seleccionada.
+                    if (materialTabControl1.SelectedTab != null)
                     {
-                        // Abre el formulario correspondiente al Nombre1.
-                        // Por ejemplo:
-                        Partidafrm form1 = new Partidafrm();
-                        form1.ShowDialog();
+                        string tabPageName = materialTabControl1.SelectedTab.Name.Replace(" ", "");
+                    
+                        // Lógica para abrir el formulario en función del tabPageName.
+                        if (tabPageName == "TabPage_Inicio"  && menuseleccionado == 0)
+                        {
+                            // Abre el formulario correspondiente al Nombre1.
+                            // Por ejemplo:
+                            Partidafrm form1 = new Partidafrm();
+                            form1.ShowDialog();
+
+                                
+                    
+                        }
+                        else if (tabPageName == "TabPage_Contabilidad" && menuseleccionado == 0 )
+                        {
+                            // Abre el formulario correspondiente al Nombre2.
+                            // Por ejemplo:
+                            MenuContabilidadcs form2 = new MenuContabilidadcs();
+                            form2.ShowDialog();
+                        }
+                        else if (tabPageName == "TabPage_Mantenimientos" && menuseleccionado == 0)
+                        {
+                            // Abre el formulario correspondiente al Nombre2.
+                            // Por ejemplo:
+                            MenuMantenimientos form2 = new MenuMantenimientos();
+                            form2.ShowDialog();
+                        }
+                        else if (tabPageName == "TabPage_Clientes" && menuseleccionado == 0)
+                        {
+                            // Abre el formulario correspondiente al Nombre2.
+                            // Por ejemplo:
+                            MenuCliente form2 = new MenuCliente();
+                            form2.ShowDialog();
+                        }
+                        else if (tabPageName == "TabPage_Proveedores" && menuseleccionado == 0)
+                        {
+                            // Abre el formulario correspondiente al Nombre2.
+                            // Por ejemplo:
+                            MenuProveedor form2 = new MenuProveedor();
+                            form2.ShowDialog();
+                        }
+                        else if (tabPageName == "TabPage_Seguridad" && menuseleccionado == 0)
+                        {
+                            // Abre el formulario correspondiente al Nombre2.
+                            // Por ejemplo:
+                            MenuSeguridad form2  =new MenuSeguridad();
+                            form2.ShowDialog();
+                        }
+                        else if (tabPageName == "TabPage_Reportes" && menuseleccionado == 0)
+                        {
+                            // Abre el formulario correspondiente al Nombre2.
+                            // Por ejemplo:
+                            MenusReportes form2 = new MenusReportes();
+                            form2.ShowDialog();
+                        }
+
+                        // Agrega más casos según tus necesidades.
                     }
-                    else if (tabPageName == "TabPage_Nombre2")
+                    menuseleccionado = Properties.Settings.Default.Opcmenu = menuseleccionado + 1;
+
+                    if (menuseleccionado > 1)
                     {
-                        // Abre el formulario correspondiente al Nombre2.
-                        // Por ejemplo:
-                        Partidafrm form1 = new Partidafrm();
-                        form1.ShowDialog();
-
+                        Properties.Settings.Default.Opcmenu = 0;
+                        menuseleccionado = Properties.Settings.Default.Opcmenu;
                     }
-                    // Agrega más casos según tus necesidades.
+                    //else
+                    //{
+                    //    materialTabControl1.SelectedTab = null;
+                    //    return;
+                    //}
 
+                    //materialTabControl1.SelectedTab = null;
+                    //return;
+
+
+                    // materialTabControl1.SelectedIndex = -1;
                 };
+               
 
-            }
+
+            }*/
+
+
 
         }
 
@@ -194,7 +365,7 @@ namespace OrdenaCuenta
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (materialTabControl1.SelectedIndex)
+          /*  switch (materialTabControl1.SelectedIndex)
             {
                 case 0: // Índice de la primera pestaña
                     Cuentasfrm form1 = new Cuentasfrm(); // Reemplaza Form1 con el nombre de tu formulario               
@@ -208,7 +379,7 @@ namespace OrdenaCuenta
 
                     break;
                     // Agrega más casos para otras pestañas si es necesario
-            }
+            }*/
         }
     }
 }

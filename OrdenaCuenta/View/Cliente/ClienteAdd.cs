@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrdenaCuenta.Model;
-
+using OrdenaCuenta.View.Cuentas;
 
 namespace OrdenaCuenta.View.Cliente
 {
@@ -21,10 +21,17 @@ namespace OrdenaCuenta.View.Cliente
         
         ClienteController clientecon = new ClienteController();
         TipoMonedaController mon = new TipoMonedaController();
+        subcuentaController subcuecon = new subcuentaController();
+
 
         ClienteModel clientmod = new ClienteModel();
+        subcuentaModel subcuemod = new subcuentaModel();
+
         private ClienteModel parametros;
         string id = "0";
+        string usuario = Properties.Settings.Default.Usuario;
+        int idsubcuenta = 0;
+
 
         string estadofrm = "";
 
@@ -57,7 +64,16 @@ namespace OrdenaCuenta.View.Cliente
                 this.txtdireccion.Text = parametros.Direccion.ToString();
                 this.txtdireccion.Text = parametros.Direccion;
                 this.cmbmoneda.SelectedText = parametros.CliTipMonid.ToString();
-                
+                this.txtrnt.Text = parametros.RTN.ToString();
+                this.txtnombrecia.Text= parametros.NombreCia.ToString();
+                this.txsubcuenta.ReadOnly= false;
+                this.txsubcuenta.Text = parametros.subcuenta;
+                subcuemod.Cuentacontablesub = this.txsubcuenta.Text;
+                subcuemod.CuentaId = 0;
+                subcuemod.usuariocreacion = usuario;
+                idsubcuenta = subcuecon.getsubcuentaid(subcuemod);
+
+
                 //= parametros.CliTipMonid.ToString();
 
             }
@@ -85,6 +101,7 @@ namespace OrdenaCuenta.View.Cliente
             monthCalendar1.Visible = false;
             this.cargarcombos();
 
+           // txsubcuenta.Text = "202304";
 
         }
 
@@ -154,10 +171,15 @@ namespace OrdenaCuenta.View.Cliente
             clientmod.Abono = Convert.ToDecimal( txtmonto.Text);
             clientmod.segundoApellido = txtapellidosegundo.Text;
             clientmod.segundoNombre = txtnombresegundo.Text;
-            clientmod.CliTipMonid = Convert.ToInt32(cmbmoneda.SelectedValue);;
+            clientmod.CliTipMonid = Convert.ToInt32(cmbmoneda.SelectedValue);
+            clientmod.subcueidcli = idsubcuenta;// Convert.ToInt32(txsubcuenta.Text);
+            clientmod.NombreCia = txtnombrecia.Text;
+            clientmod.RTN = txtrnt.Text;
+            clientmod.usuariocreacion = usuario;
 
 
             clientecon.Crear(clientmod);
+            this.Close();
 
 
 
@@ -224,12 +246,67 @@ namespace OrdenaCuenta.View.Cliente
             clientmod.Abono = Convert.ToDecimal(txtmonto.Text);
             clientmod.segundoApellido = txtapellidosegundo.Text;
             clientmod.segundoNombre = txtnombresegundo.Text;
-            clientmod.CliTipMonid = Convert.ToInt32(cmbmoneda.SelectedValue); ;
+            clientmod.CliTipMonid = Convert.ToInt32(cmbmoneda.SelectedValue);
+            clientmod.subcueidcli = idsubcuenta;// Convert.ToInt32(txsubcuenta.Text);
+            clientmod.NombreCia = txtnombrecia.Text;
+            clientmod.RTN = txtrnt.Text;
+            clientmod.usuariocreacion = usuario;
 
 
 
             clientecon.Editar(clientmod);
             this.Close();
+        }
+
+        private void txtmonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Si no es un número ni una tecla de control, suprimir la entrada
+                e.Handled = true;
+            }
+        }
+
+        private void materialLabel8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtfecha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbmoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txsubcuenta_Click(object sender, EventArgs e)
+        {
+            txsubcuenta.ReadOnly = false;
+
+           
+            SubcuentasAdd frm = new SubcuentasAdd( txtnombrecia.Text );
+            frm.ShowDialog();
+            txsubcuenta.Text = Properties.Settings.Default.subcuentacod;
+            idsubcuenta = Properties.Settings.Default.idsubcuenta;
+
+
+            // Vuelve a habilitar el modo de solo lectura para evitar ediciones.
+            //    txsubcuenta.ReadOnly = true;
+
+
+        }
+
+        private void txsubcuenta_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

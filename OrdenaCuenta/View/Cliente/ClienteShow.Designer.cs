@@ -40,15 +40,17 @@
             this.Telefono = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Abono = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.moneda = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Idtxt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Direccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.subcuentanum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.subcuenta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtrtn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtnombre = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.btagregar = new MaterialSkin.Controls.MaterialButton();
             this.btneditar = new MaterialSkin.Controls.MaterialButton();
             this.btneliminar = new MaterialSkin.Controls.MaterialButton();
-            this.txtnombre = new MaterialSkin.Controls.MaterialTextBox();
-            this.Idtxt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Direccion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lsclientes
@@ -68,17 +70,22 @@
             this.Abono,
             this.moneda,
             this.Idtxt,
-            this.Direccion});
+            this.Direccion,
+            this.subcuentanum,
+            this.subcuenta,
+            this.txtrtn,
+            this.columnHeader2});
             this.lsclientes.Depth = 0;
             this.lsclientes.FullRowSelect = true;
             this.lsclientes.HideSelection = false;
-            this.lsclientes.Location = new System.Drawing.Point(26, 191);
-            this.lsclientes.MinimumSize = new System.Drawing.Size(200, 100);
+            this.lsclientes.Location = new System.Drawing.Point(20, 155);
+            this.lsclientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lsclientes.MinimumSize = new System.Drawing.Size(150, 81);
             this.lsclientes.MouseLocation = new System.Drawing.Point(-1, -1);
             this.lsclientes.MouseState = MaterialSkin.MouseState.OUT;
             this.lsclientes.Name = "lsclientes";
             this.lsclientes.OwnerDraw = true;
-            this.lsclientes.Size = new System.Drawing.Size(753, 194);
+            this.lsclientes.Size = new System.Drawing.Size(565, 158);
             this.lsclientes.TabIndex = 0;
             this.lsclientes.UseCompatibleStateImageBehavior = false;
             this.lsclientes.View = System.Windows.Forms.View.Details;
@@ -134,6 +141,66 @@
             // 
             this.moneda.Text = "moneda";
             // 
+            // Idtxt
+            // 
+            this.Idtxt.Text = "Id";
+            // 
+            // Direccion
+            // 
+            this.Direccion.Text = "Direccion";
+            this.Direccion.Width = 200;
+            // 
+            // subcuentanum
+            // 
+            this.subcuentanum.Text = "subcuentanum";
+            this.subcuentanum.Width = 150;
+            // 
+            // subcuenta
+            // 
+            this.subcuenta.Text = "subcuenta";
+            this.subcuenta.Width = 250;
+            // 
+            // txtrtn
+            // 
+            this.txtrtn.Text = "rtn";
+            this.txtrtn.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "NombreCia";
+            this.columnHeader2.Width = 200;
+            // 
+            // txtnombre
+            // 
+            this.txtnombre.AnimateReadOnly = false;
+            this.txtnombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtnombre.Depth = 0;
+            this.txtnombre.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.txtnombre.LeadingIcon = null;
+            this.txtnombre.Location = new System.Drawing.Point(204, 101);
+            this.txtnombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtnombre.MaxLength = 50;
+            this.txtnombre.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtnombre.Multiline = false;
+            this.txtnombre.Name = "txtnombre";
+            this.txtnombre.Size = new System.Drawing.Size(181, 50);
+            this.txtnombre.TabIndex = 9;
+            this.txtnombre.Text = "";
+            this.txtnombre.TrailingIcon = ((System.Drawing.Image)(resources.GetObject("txtnombre.TrailingIcon")));
+            this.txtnombre.TextChanged += new System.EventHandler(this.txtnombre_TextChanged);
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(62, 110);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(89, 28);
+            this.materialLabel1.TabIndex = 10;
+            this.materialLabel1.Text = "Buscar";
+            // 
             // btagregar
             // 
             this.btagregar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -141,8 +208,8 @@
             this.btagregar.Depth = 0;
             this.btagregar.HighEmphasis = true;
             this.btagregar.Icon = global::OrdenaCuenta.Properties.Resources.add_insert_plus_icon_1495461;
-            this.btagregar.Location = new System.Drawing.Point(552, 405);
-            this.btagregar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btagregar.Location = new System.Drawing.Point(414, 329);
+            this.btagregar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btagregar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btagregar.Name = "btagregar";
             this.btagregar.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -161,8 +228,8 @@
             this.btneditar.Depth = 0;
             this.btneditar.HighEmphasis = true;
             this.btneditar.Icon = global::OrdenaCuenta.Properties.Resources.pencil_striped_symbol_for_interface_edit_buttons_icon_icons_com_56782;
-            this.btneditar.Location = new System.Drawing.Point(297, 405);
-            this.btneditar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btneditar.Location = new System.Drawing.Point(223, 329);
+            this.btneditar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btneditar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btneditar.Name = "btneditar";
             this.btneditar.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -172,6 +239,7 @@
             this.btneditar.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btneditar.UseAccentColor = false;
             this.btneditar.UseVisualStyleBackColor = true;
+            this.btneditar.Click += new System.EventHandler(this.btneditar_Click);
             // 
             // btneliminar
             // 
@@ -181,8 +249,8 @@
             this.btneliminar.Depth = 0;
             this.btneliminar.HighEmphasis = true;
             this.btneliminar.Icon = global::OrdenaCuenta.Properties.Resources.seo_social_web_network_internet_262_icon_icons_com_61518;
-            this.btneliminar.Location = new System.Drawing.Point(86, 405);
-            this.btneliminar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btneliminar.Location = new System.Drawing.Point(64, 329);
+            this.btneliminar.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.btneliminar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -194,72 +262,24 @@
             this.btneliminar.UseVisualStyleBackColor = false;
             this.btneliminar.Click += new System.EventHandler(this.btneliminar_Click);
             // 
-            // txtnombre
-            // 
-            this.txtnombre.AnimateReadOnly = false;
-            this.txtnombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtnombre.Depth = 0;
-            this.txtnombre.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtnombre.LeadingIcon = null;
-            this.txtnombre.Location = new System.Drawing.Point(272, 124);
-            this.txtnombre.MaxLength = 50;
-            this.txtnombre.MouseState = MaterialSkin.MouseState.OUT;
-            this.txtnombre.Multiline = false;
-            this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(241, 50);
-            this.txtnombre.TabIndex = 9;
-            this.txtnombre.Text = "";
-            this.txtnombre.TrailingIcon = null;
-            this.txtnombre.TextChanged += new System.EventHandler(this.txtnombre_TextChanged);
-            // 
-            // Idtxt
-            // 
-            this.Idtxt.Text = "Id";
-            // 
-            // materialLabel1
-            // 
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(83, 136);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(119, 34);
-            this.materialLabel1.TabIndex = 10;
-            this.materialLabel1.Text = "Buscar";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(470, 136);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
-            // 
-            // Direccion
-            // 
-            this.Direccion.Text = "Direccion";
-            this.Direccion.Width = 200;
-            // 
             // ClienteShow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.txtnombre);
             this.Controls.Add(this.btagregar);
             this.Controls.Add(this.btneditar);
             this.Controls.Add(this.btneliminar);
             this.Controls.Add(this.lsclientes);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ClienteShow";
+            this.Padding = new System.Windows.Forms.Padding(2, 52, 2, 2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Clientes";
             this.Load += new System.EventHandler(this.ClienteShow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,7 +304,10 @@
         private MaterialSkin.Controls.MaterialTextBox txtnombre;
         private System.Windows.Forms.ColumnHeader Idtxt;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ColumnHeader Direccion;
+        private System.Windows.Forms.ColumnHeader subcuentanum;
+        private System.Windows.Forms.ColumnHeader subcuenta;
+        private System.Windows.Forms.ColumnHeader txtrtn;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
